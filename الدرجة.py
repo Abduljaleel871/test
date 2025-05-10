@@ -87,39 +87,79 @@ HTML_TEMPLATE = """
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حساب الدرجة الوظيفية والعلاوات</title>
     <style>
-        body { font-family: Arial, sans-serif; direction: rtl; padding: 20px; background: #f9f9f9; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
-        label { display: block; margin-top: 15px; }
-        select, input { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
-        button { margin-top: 20px; padding: 10px; width: 100%; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .result { background: #e9ffe9; border: 1px solid #4CAF50; padding: 15px; margin-top: 20px; border-radius: 5px; }
-        .error { background: #ffe9e9; border: 1px solid #f44336; padding: 15px; margin-top: 20px; border-radius: 5px; }
-    </style>
-    <script>
-        function toggleDegree() {
-            var category = document.getElementById('category').value;
-            var degreeDiv = document.getElementById('degreeDiv');
-            // الفئات التي تتطلب شهادة (حسب القاموس) نحددها هنا
-            var requiresDegreeCategories = [
-                "أخصائي طبي ثان",
-                "طبيب أول",
-                "طبيب ثالث",
-                "فني صحي أول",
-                "فني صحي ثان"
-            ];
-            var needsDegree = requiresDegreeCategories.some(function(cat) {
-                return category.startsWith(cat);
-            });
-            degreeDiv.style.display = needsDegree ? 'block' : 'none';
-            if (!needsDegree) {
-                document.getElementById('degree').value = '';
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            background: #f9f9f9;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result, .error {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .result {
+            background: #e9ffe9;
+            border: 1px solid #4CAF50;
+        }
+        .error {
+            background: #ffe9e9;
+            border: 1px solid #f44336;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            button {
+                font-size: 0.9em;
+            }
+            select, input {
+                font-size: 0.9em;
             }
         }
-        window.onload = toggleDegree;
-    </script>
+    </style>
 </head>
 <body>
     <div class="container">
